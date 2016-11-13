@@ -6,7 +6,7 @@
 #    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/15 10:33:49 by khansman          #+#    #+#              #
-#    Updated: 2016/11/12 18:06:22 by khansman         ###   ########.fr        #
+#    Updated: 2016/11/13 18:08:25 by khansman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,10 +91,8 @@ SRCS4 = ft_lstnew.c			\
 		ft_get_line.c		\
 		ft_itoa_base.c		\
 		ft_print_hex.c		\
-		get_next_line.c		\
 		ft_die.c			\
 		ft_print_memory.c 	\
-		ft_atol.c			\
 		ft_strtolower.c		\
 
 
