@@ -34,11 +34,34 @@
 
 # define BUFF_SIZE 32
 
+# define NUM_BUFF  10
+# define LINE_SIZE 50
+
+/*
+** Short_hand
+*/
+# define ACTIVE buff->active
+# define POS    buff->pos
+# define BUFF   buff->buff
+# define B_FD   buff->fd
+# define RET    buff->ret
+# define L      buff->l
+
 /*
 ** ----------\
 ** Structures |
 ** ----------/
 */
+
+typedef struct	s_buff
+{
+	char		buff[BUFF_SIZE];
+	char		active;
+	int			fd;
+	char		ret;
+	int			pos;
+	int			l;
+}				t_buff;
 
 /*
 ** ----------\
