@@ -39,6 +39,7 @@ static void		get_buff(t_buff **buff, int fd)
 	{
 		if (!buffs[k].active)
 		{
+			ft_bzero(&buffs[k], sizeof(t_buff));
 			buffs[k].fd = fd;
 			*buff = &buffs[k];
 			return ;
@@ -54,10 +55,16 @@ static int		read_line(t_buff *buff)
 	if (!ACTIVE)
 		ACTIVE = 1;
 	else if (!RET)
+	{
+		ACTIVE = 0;
 		return (0);
+	}
 	RET = read(B_FD, BUFF, BUFF_SIZE);
-	if (RET == -1)
-		return -1;
+	if (!RET)
+	{
+		ACTIVE = 0;
+		return (RET);
+	}
 	POS = 0;
 	return (RET);
 }
@@ -70,7 +77,7 @@ static int		read_line(t_buff *buff)
 	 if (!ACTIVE && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (POS != '\n' && POS != '\0')
+	while (BUFF[POS] != '\n' && BUFF[POS] != '\0')
 	{
 		if (POS >= RET && !read_line(buff))
 			return (RET);
@@ -79,5 +86,6 @@ static int		read_line(t_buff *buff)
 		*line[++L] = BUFF[POS];
 		POS++;
 	}
+	POS++;
 	return (1);
  }

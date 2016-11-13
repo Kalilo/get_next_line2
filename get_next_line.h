@@ -41,7 +41,7 @@
 ** Short_hand
 */
 # define ACTIVE buff->active
-# define POS    buff->pos
+# define POS    (buff->pos % BUFF_SIZE)
 # define BUFF   buff->buff
 # define B_FD   buff->fd
 # define RET    buff->ret
