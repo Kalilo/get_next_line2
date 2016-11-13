@@ -47,6 +47,7 @@
 # define B_FD   buff->fd
 # define RET    buff->ret
 # define L      buff->l
+# define LINE   buff->line
 
 /*
 ** ----------\
@@ -62,6 +63,7 @@ typedef struct	s_buff
 	char		ret;
 	int			pos;
 	int			l;
+	char		*line;
 }				t_buff;
 
 /*

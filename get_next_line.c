@@ -17,8 +17,9 @@ static void		remalloc(char **line, int len)
 	char			*tmp;
 
 	tmp = *line;
-	*line = ft_strnew(len + LINE_SIZE + 1);
-	ft_memcpy(*line, tmp, len);
+	*line = ft_strnew(len + LINE_SIZE + 2);
+	if (len != -1)
+		ft_memcpy(*line, tmp, len + 1);
 	free(tmp);
 }
 
@@ -54,18 +55,18 @@ static int		read_line(t_buff *buff)
 {
 	if (!ACTIVE)
 		ACTIVE = 1;
-	else if (!RET)
+	else if (RET < 1)
 	{
 		ACTIVE = 0;
 		return (0);
 	}
 	RET = read(B_FD, BUFF, BUFF_SIZE);
-	if (!RET)
+	POS = 0;
+	if (RET < 0)
 	{
 		ACTIVE = 0;
 		return (RET);
 	}
-	POS = 0;
 	return (RET);
 }
 
@@ -74,18 +75,21 @@ static int		read_line(t_buff *buff)
 	 t_buff			*buff;
 
 	 get_buff(&buff, fd);
-	 if (!ACTIVE && !read_line(buff))
+	 if ((!ACTIVE || POS >= RET) && !ACTIVE && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (BUFF[AB_POS] != '\n' && BUFF[AB_POS] != '\0')
+	while (BUFF[POS] != '\n')
 	{
 		if (POS >= RET && !read_line(buff))
 			return (RET);
-		if (((L + 1) % LINE_SIZE) == 0 || L == 0)
-			remalloc(line, L);
-		*line[++L] = BUFF[AB_POS];
+		if (BUFF[POS] == '\n')
+			break ;
+		if (((L + 1) % LINE_SIZE) == 0 || L == -1)
+			remalloc(&LINE, L);
+		LINE[++L] = BUFF[POS];
 		POS++;
 	}
+	*line = (L == -1) ? ft_strnew(4) : LINE;
 	POS++;
 	return (1);
  }
