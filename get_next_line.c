@@ -77,13 +77,13 @@ static int		read_line(t_buff *buff)
 	 if (!ACTIVE && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (BUFF[POS] != '\n' && BUFF[POS] != '\0')
+	while (BUFF[AB_POS] != '\n' && BUFF[AB_POS] != '\0')
 	{
 		if (POS >= RET && !read_line(buff))
 			return (RET);
 		if (((L + 1) % LINE_SIZE) == 0 || L == 0)
 			remalloc(line, L);
-		*line[++L] = BUFF[POS];
+		*line[++L] = BUFF[AB_POS];
 		POS++;
 	}
 	POS++;
