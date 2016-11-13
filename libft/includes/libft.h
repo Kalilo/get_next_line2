@@ -27,7 +27,6 @@
 **	Defines:
 */
 
-
 # define BASE_STR static char *b = "0123456789ABCDEF";
 # define BASE_STR2 char *base = "0123456789abcdef";
 
