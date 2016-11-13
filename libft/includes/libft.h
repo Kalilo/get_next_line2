@@ -27,10 +27,6 @@
 **	Defines:
 */
 
-# define BUFF_SIZE 32
-# define L_LEN 50
-# define NUM_FILES 10
-# define MAX_BUFF 800000
 
 # define BASE_STR static char *b = "0123456789ABCDEF";
 # define BASE_STR2 char *base = "0123456789abcdef";
@@ -40,17 +36,6 @@
 /*
 **	Structures:
 */
-
-int					get_next_line(const int fd, char **line);
-
-typedef struct		s_buff
-{
-	char			buff[BUFF_SIZE];
-	int				buf_pos;
-	int				buf_fd;
-	int				eof;
-	int				buf_init;
-}					t_buff;
 
 typedef struct		s_base_var
 {
@@ -133,7 +118,6 @@ void				ft_lstadd(t_list **alst, t_list *new_list);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-int					get_next_line(const int fd, char **line);
 void				ft_free2d(char **arr);
 char				*ft_remalloc(char *line, size_t size);
 int					ft_get_line(int fd, char **line);
@@ -141,7 +125,6 @@ char				*ft_itoa_base(int value, int base);
 void				ft_print_hex(unsigned char num);
 void				ft_print_memory(const void *addr, size_t size);
 void				ft_die(char *str);
-long int			ft_atol(const char *str);
 char				*ft_strtolower(char *str);
 
 #endif
