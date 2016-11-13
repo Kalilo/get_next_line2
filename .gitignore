@@ -31,3 +31,10 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Other
+.DS_Store
+._*
+.swp
+.vscode
+
