@@ -37,4 +37,5 @@
 ._*
 .swp
 .vscode
-
+tmp.c
+.gitignore
