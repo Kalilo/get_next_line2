@@ -39,6 +39,6 @@
 .vscode
 tmp.c
 .gitignore
-test.gnl
+test_gnl
 main.c
 compiler.sh
