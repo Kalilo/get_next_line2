@@ -81,11 +81,11 @@ static int		read_line(t_buff *buff)
 	 if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (BUFF[POS] != '\n' && BUFF[POS] != 26 && !(BUFF[POS] == '\0' && RET < BUFF_SIZE))
+	while (BUFF[POS] != '\n' && BUFF[POS] != 26 && !BUFF_END)
 	{
 		if (POS > RET && !read_line(buff))
 			return (RET);
-		if (BUFF[POS] == '\n' || BUFF[POS] == 26)
+		if (BUFF[POS] == '\n' || BUFF[POS] == 26 || BUFF_END)
 			break ;
 		if (((L + 1) % LINE_SIZE) == 0 || L == -1)
 			remalloc(&LINE, L);

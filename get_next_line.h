@@ -32,7 +32,7 @@
 ** ----------/
 */
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 1
 
 # define NUM_BUFF  10
 # define LINE_SIZE 50
@@ -48,6 +48,8 @@
 # define RET    buff->ret
 # define L      buff->l
 # define LINE   buff->line
+
+# define BUFF_END (BUFF[POS] == '\0' && RET < BUFF_SIZE)
 
 /*
 ** ----------\
