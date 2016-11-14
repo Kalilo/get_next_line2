@@ -19,8 +19,10 @@ static void		remalloc(char **line, int len)
 	tmp = *line;
 	*line = ft_strnew(len + LINE_SIZE + 2);
 	if (len != -1)
+	{
 		ft_memcpy(*line, tmp, len + 1);
-	free(tmp);
+		free(tmp);
+	}
 }
 
 static void		get_buff(t_buff **buff, int fd)
