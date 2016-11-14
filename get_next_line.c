@@ -64,7 +64,7 @@ static int		read_line(t_buff *buff)
 	else
 		ft_bzero(&BUFF, BUFF_SIZE);
 	RET = read(B_FD, BUFF, BUFF_SIZE);
-	ft_print_memory(BUFF, BUFF_SIZE);
+	ft_print_memory(BUFF, BUFF_SIZE);//debug
 	POS = 0;
 	if (RET == -1)
 	{
