@@ -79,6 +79,8 @@ int				get_next_line(const int fd, char **line)
 {
 	t_buff			*buff;
 
+	if (BUFF_SIZE < 1)
+		return (-1);
 	get_buff(&buff, fd);
 	if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 		return (RET);
