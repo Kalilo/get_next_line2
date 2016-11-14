@@ -85,11 +85,11 @@ int				get_next_line(const int fd, char **line)
 	if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 		return (RET);
 	L = -1;
-	while (BUFF[POS] != '\n' && BUFF[POS] != 26 && !BUFF_END)
+	while (BUFF[POS] != '\n' && BUFF[POS] != 26)
 	{
 		if (POS > RET && !read_line(buff))
 			return (RET);
-		if (BUFF[POS] == '\n' || BUFF[POS] == 26 || BUFF_END)
+		if (BUFF[POS] == '\n' || BUFF[POS] == 26)
 			break ;
 		if (((L + 1) % LINE_SIZE) == 0 || L == -1)
 			remalloc(&LINE, L);
