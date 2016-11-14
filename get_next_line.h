@@ -26,8 +26,6 @@
 
 # include "./libft/includes/libft.h"
 
-//#include <stdio.h>//debug
-
 /*
 ** ----------\
 ** Defines    |

@@ -83,7 +83,7 @@ static int		read_line(t_buff *buff)
 	 if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (BUFF[POS] != '\n' && BUFF[POS] != 26)
+	while (BUFF[POS] != '\n' && BUFF[POS] != 26 && !(BUFF[POS] == '\0' && RET < BUFF_SIZE))
 	{
 		if (POS >= RET && !read_line(buff))
 			return (RET);
