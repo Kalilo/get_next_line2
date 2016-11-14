@@ -32,7 +32,7 @@
 ** ----------/
 */
 
-# define BUFF_SIZE 2000
+# define BUFF_SIZE 32
 
 # define NUM_BUFF  10
 # define LINE_SIZE 50

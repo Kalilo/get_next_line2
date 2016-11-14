@@ -64,7 +64,6 @@ static int		read_line(t_buff *buff)
 	else
 		ft_bzero(&BUFF, BUFF_SIZE);
 	RET = read(B_FD, BUFF, BUFF_SIZE);
-	//ft_print_memory(BUFF, BUFF_SIZE);//debug
 	POS = 0;
 	if (RET == -1)
 	{
@@ -79,13 +78,12 @@ static int		read_line(t_buff *buff)
 	 t_buff			*buff;
 
 	 get_buff(&buff, fd);
-	// printf("BUFF[POS -1] = '%c', POS = '%d', RET = '%d'.\n", BUFF[POS -1], POS, RET);//debug
 	 if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 	 	return (RET);
 	L = -1;
 	while (BUFF[POS] != '\n' && BUFF[POS] != 26 && !(BUFF[POS] == '\0' && RET < BUFF_SIZE))
 	{
-		if (POS >= RET && !read_line(buff))
+		if (POS > RET && !read_line(buff))
 			return (RET);
 		if (BUFF[POS] == '\n' || BUFF[POS] == 26)
 			break ;
