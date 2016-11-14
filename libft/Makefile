@@ -104,18 +104,6 @@ SRCS = $(addprefix $(SRCS_PATH), $(SRCS_ALL))
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_ALL))
 
-define colourecho
-tput setaf 4
-@echo $1
-tput sgr0
-endef
-
-define colourecho2
-tput setaf 10
-@echo $1
-tput sgr0
-endef
-
 all:
 	@if [ ! -f $(NAME) ]; then \
 		make $(NAME) ; else \
@@ -128,63 +116,45 @@ $(libft):
 		echo make: "Nothing to be done for 'libft'." ; \
 		fi
 
-$(NAME): qme objs_dir $(OBJS)
-	@$(call colourecho, "Compiling $(NAME)")
+$(NAME): objs_dir $(OBJS)
+	@echo "Compiling $(NAME)"
 	@ar -rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@$(call colourecho, "Done Compiling!")
+	@echo "Done Compiling!"
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(COMP) $(FLAGS) -o $@ -c $< -I$(INC_PATH)
 
 clean:
-	@$(call colourecho, "Removing object files.")
+	@echo "Removing object files."
 	@rm -Rf $(OBJS_PATH)
-	@$(call colourecho, "Done cleaning!")
+	@echo "Done cleaning!"
 	@if [ -f includes/libft.h.gch ]; then \
 		rm includes/libft.h.gch; \
 		fi
 
 fclean: clean
-	@$(call colourecho, "Removing $(NAME)")
+	@echo "Removing $(NAME)"
 	@rm -Rf $(NAME)
 
 re: fclean all
 
-me: qme
-	@$(call colourecho2, "\nAuthor:")
-	cat -e author
-
 objs_dir:
 	@mkdir -p $(OBJS_PATH)
 
-qme:
-	@if [ ! -f author ]; then \
-		whoami > author; \
-	fi
-
 norme:
 	@clear
-	@$(call colourecho2, "\nNorminette:")
+	@echo "\nNorminette:"
 	@norminette $(addprefix $(SRCS_PATH), $(SRCS1))
 	@norminette $(addprefix $(SRCS_PATH), $(SRCS2))
 	@norminette $(addprefix $(SRCS_PATH), $(SRCS3))
 	@norminette $(addprefix $(SRCS_PATH), $(SRCS4))
 	@norminette $(addprefix $(INC_PATH), $(HEADER))
 
-test:
-	@ $@ norminette $^ $(addprefix $(SRC_PATH), $(SRC_ALL))
-
 format: norme me
 
 objs: re
 
 srcs: objs
-
-.IGNORE: Makefile a.out author includes srcs
-
-.DEFAULT: re
-
-.EXPORT_ALL_VARIABLES:
 
 .PHONY: clean fclean re objs_dir
