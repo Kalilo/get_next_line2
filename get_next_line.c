@@ -49,7 +49,7 @@ static void		get_buff(t_buff **buff, int fd)
 		}
 	}
 	ft_bzero(&buffs[0], sizeof(t_buff));
-	buffs[k].fd = fd;
+	buffs[0].fd = fd;
 	*buff = &buffs[0];
 }
 
