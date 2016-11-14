@@ -40,14 +40,14 @@
 /*
 ** Short_hand
 */
-# define ACTIVE buff->active
-# define POS    buff->pos
-# define AB_POS (buff->pos % BUFF_SIZE)
-# define BUFF   buff->buff
-# define B_FD   buff->fd
-# define RET    buff->ret
-# define L      buff->l
-# define LINE   buff->line
+# define ACTIVE    buff->active
+# define POS       buff->pos
+# define AB_POS    (buff->pos % BUFF_SIZE)
+# define BUFF      buff->buff
+# define B_FD      buff->fd
+# define RET       buff->ret
+# define L         buff->l
+# define LINE      buff->line
 
 # define BUFF_END (BUFF[POS] == '\0' && RET < BUFF_SIZE)
 
@@ -74,7 +74,7 @@ typedef struct	s_buff
 ** ----------/
 */
 
- int		get_next_line(const int fd, char **line);
+int				get_next_line(const int fd, char **line);
 
 /*
 **                                /----------\                                **
