@@ -26,13 +26,15 @@
 
 # include "./libft/includes/libft.h"
 
+//#include <stdio.h>//debug
+
 /*
 ** ----------\
 ** Defines    |
 ** ----------/
 */
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 2000
 
 # define NUM_BUFF  10
 # define LINE_SIZE 50
@@ -60,7 +62,7 @@ typedef struct	s_buff
 	char		buff[BUFF_SIZE];
 	char		active;
 	int			fd;
-	char		ret;
+	int			ret;
 	int			pos;
 	int			l;
 	char		*line;

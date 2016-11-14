@@ -55,19 +55,23 @@ static int		read_line(t_buff *buff)
 {
 	if (!ACTIVE)
 		ACTIVE = 1;
-	else if (RET < 1)
+	else if (RET < BUFF_SIZE)
 	{
 		ACTIVE = 0;
+		RET = 0;
 		return (0);
 	}
+	else
+		ft_bzero(&BUFF, BUFF_SIZE);
 	RET = read(B_FD, BUFF, BUFF_SIZE);
+	ft_print_memory(BUFF, BUFF_SIZE);
 	POS = 0;
-	if (RET < 0)
+	if (RET == -1)
 	{
 		ACTIVE = 0;
 		return (RET);
 	}
-	return (RET);
+	return (1);
 }
 
  int			get_next_line(const int fd, char **line)
@@ -75,14 +79,15 @@ static int		read_line(t_buff *buff)
 	 t_buff			*buff;
 
 	 get_buff(&buff, fd);
-	 if ((!ACTIVE || POS >= RET) && !ACTIVE && !read_line(buff))
+	 //printf("BUFF[POS -1] = '%c', POS = '%d', RET = '%d'.\n", BUFF[POS -1], POS, RET);
+	 if ((!ACTIVE || (POS > RET)) && !read_line(buff))
 	 	return (RET);
 	L = -1;
-	while (BUFF[POS] != '\n')
+	while (BUFF[POS] != '\n' && BUFF[POS] != 26)
 	{
 		if (POS >= RET && !read_line(buff))
 			return (RET);
-		if (BUFF[POS] == '\n')
+		if (BUFF[POS] == '\n' || BUFF[POS] == 26)
 			break ;
 		if (((L + 1) % LINE_SIZE) == 0 || L == -1)
 			remalloc(&LINE, L);
