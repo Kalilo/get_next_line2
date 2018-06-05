@@ -87,7 +87,7 @@ int				get_next_line(const int fd, char **line)
 	L = -1;
 	while (BUFF[POS] != '\n' && BUFF[POS] != 26)
 	{
-		if (POS > RET && !read_line(buff))
+		if (POS >= RET && !read_line(buff))
 			return (RET);
 		if (BUFF[POS] == '\n' || BUFF[POS] == 26)
 			break ;
